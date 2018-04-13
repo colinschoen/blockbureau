@@ -34,9 +34,5 @@ Development: Setting up
 
         pip install -r requirements.txt
 
-6. Set up configuration file
-
-    Copy the `backup.cfg.example` configuration file to `backup.cfg`. Configure your default argument values.
-
 > You only have to run through the setup process once. However, you **must run
 > `source env/bin/activate` every time you work in the repo.**
