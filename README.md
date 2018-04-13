@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/colinschoen/blockbureau.svg?branch=master)](https://travis-ci.org/colinschoen/blockbureau)
+
 Local Server
 ------------
 To run the server locally:
