@@ -3,6 +3,9 @@ Flask-SQLAlchemy
 Flask-WTF
 WTForms
 coverage
+pytest>=3.5.0
+hypothesis>=3.55.4
+pytest-runner
 # ecdsa
 # paramiko
 # pycrypto
