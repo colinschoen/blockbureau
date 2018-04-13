@@ -1,3 +1,16 @@
+Local Server
+------------
+To run the server locally:
+
+```bash
+$ source env/bin/activate # for virtualenv
+$ pip install -r requirements.txt  # to install libraries
+$ ./manage.py createdb
+$ ./manage.py seed
+$ ./manage.py server
+```
+
+
 Development: Setting up
 ----------
 
