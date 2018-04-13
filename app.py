@@ -42,7 +42,7 @@ def login_required(test):
 
 
 @app.route('/')
-def home():
+def index():
     return render_template('pages/placeholder.home.html')
 
 
