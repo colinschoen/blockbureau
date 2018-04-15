@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/colinschoen/blockbureau.svg?branch=master)](https://travis-ci.org/colinschoen/blockbureau)
+[![Heroku App Status](http://heroku-shields.herokuapp.com/blockbureau)](https://blockbureau.herokuapp.com)
 
 Local Server
 ------------
