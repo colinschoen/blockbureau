@@ -46,16 +46,9 @@ def create_app(config):
     def index():
         return render_template('pages/index.html')
 
-
-    @app.route('/about')
-    def about():
-        return render_template('pages/placeholder.about.html')
-
-
     @app.route('/login')
     def login():
-        form = LoginForm(request.form)
-        return render_template('forms/login.html', form=form)
+        return render_template('pages/login.html')
 
 
     @app.route('/register')

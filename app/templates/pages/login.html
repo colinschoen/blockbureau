@@ -1,0 +1,39 @@
+{% extends 'layouts/main.html' %}
+{% block title %}Login{% endblock %}
+{% block content %}
+
+    <header class="masthead">
+      <div class="container h-100">
+        <div class="row h-100">
+          <div class="col-lg-7 my-auto">
+            <div class="header-content mx-auto">
+              <div class="metamask-not-installed">
+                <h4>Whoops BlockBureau requires MetaMask</h4>
+                <a href="https://metamask.io" target="_blank">
+                  <img class="download-metamask" alt="Install MetaMask" src="{{ url_for('static', filename='img/download-metamask.png') }}" />
+                </a>
+              </div>
+              <div class="metamask-installed">
+                <h4>Wahoo you have MetaMask</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+{% endblock %}
+
+{% block js %}
+<script>
+if (typeof window.web3 !== 'undefined') {
+    // This user has MetaMask, or another Web3 browser installed!
+    var ethereumProvider = web3.currentProvider  
+    $('.metamask-installed').show();
+}
+else {
+    // Prompt user to install Metamask
+    $('.metamask-not-installed').show();
+}
+</script>
+{% endblock %}
