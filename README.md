@@ -7,7 +7,10 @@ To run the server locally:
 ```bash
 $ source env/bin/activate # for virtualenv
 $ pip install -r requirements.txt  # to install libraries
+$ python3 manage.py server # to start the local development web server
 ```
+
+Finally, point yout web browser to `http://localhost:5000`
 
 
 Development: Setting up
