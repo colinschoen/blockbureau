@@ -1,6 +1,13 @@
 [![Build Status](https://travis-ci.org/colinschoen/blockbureau.svg?branch=master)](https://travis-ci.org/colinschoen/blockbureau)
 [![Heroku App Status](http://heroku-shields.herokuapp.com/blockbureau)](https://blockbureau.herokuapp.com)
 
+Deployment
+------------
+All pushes to the `master` branch trigger Travis to run all tests found in 
+the `app/tests` directory. If all tests pass then the current build will be
+deployed to `Heroku` and accessible momentarily at 
+[blockbureau.herokuapp.com](https://blockbureau.herokuapp.com)
+
 Local Server
 ------------
 To run the server locally:
