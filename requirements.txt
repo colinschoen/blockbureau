@@ -1,14 +1,17 @@
+coverage
+chromedriver_installer>=0.0.6
 Fabric
 Flask-SQLAlchemy
 Flask-WTF
 flask-script
 Flask-Migrate
+flask-testing
 WTForms
-coverage
 pytest>=3.5.0
 pytest-runner
 pytest-flask
 hypothesis>=3.55.4
+selenium>=3.11.0
 # ecdsa
 # paramiko
 # pycrypto
