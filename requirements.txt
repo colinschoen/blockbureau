@@ -1,11 +1,14 @@
 Fabric
 Flask-SQLAlchemy
 Flask-WTF
+flask-script
+Flask-Migrate
 WTForms
 coverage
 pytest>=3.5.0
-hypothesis>=3.55.4
 pytest-runner
+pytest-flask
+hypothesis>=3.55.4
 # ecdsa
 # paramiko
 # pycrypto
