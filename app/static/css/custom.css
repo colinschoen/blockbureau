@@ -1,0 +1,7 @@
+.metamask-icon {
+    display: inline;
+    max-width: 30px;
+}
+.btn-metamask-login:hover .metamask-icon {
+    display: none;
+}
