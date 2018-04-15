@@ -6,6 +6,7 @@ Flask-WTF
 flask-script
 Flask-Migrate
 flask-testing
+gunicorn>=19.7.1
 WTForms
 pytest>=3.5.0
 pytest-runner
