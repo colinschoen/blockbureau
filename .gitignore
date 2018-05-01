@@ -5,4 +5,5 @@ __pycache__
 .pytest_cache
 *.log
 *.pyc
-node_modules/*
+*.pem
+truffle/node_modules/*
