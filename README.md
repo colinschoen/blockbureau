@@ -18,6 +18,20 @@ $ pip install -r requirements.txt  # to install libraries
 $ python3 manage.py server # to start the local development web server
 ```
 
+An HTTPS development server can also be started when a cert.pem and key.pem
+file are available. These two files should be located in the root repo directory.
+To generate them run
+
+```bash
+openssl req -x509 -newkey rsa:4096 -nodes -out cert.pem -keyout key.pem -days 365
+```
+
+The HTTPS development server can then be started with the following command
+
+```bash
+$ python3 manage.py server-ssl
+```
+
 Finally, point yout web browser to `http://localhost:5000`
 
 

@@ -12,3 +12,5 @@ SECRET_KEY = 'my precious'
 
 # Connect to the database
 #SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'database.db')
+
+FB_APP_ID = os.getenv('FB_APP_ID', 'your-fb-app-id')
