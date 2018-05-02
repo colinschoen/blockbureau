@@ -1,6 +1,7 @@
 coverage
 chromedriver_installer>=0.0.6
 Fabric
+facebook-sdk==2.0.0
 Flask-SQLAlchemy
 Flask-WTF
 flask-script
@@ -11,6 +12,7 @@ WTForms
 pytest>=3.5.0
 pytest-runner
 pytest-flask
+pyopenssl
 hypothesis>=3.55.4
 selenium>=3.11.0
 # ecdsa
