@@ -19,8 +19,11 @@
                   <div class='fb-credentials-container'>
                   </div>
                   <div class="fb-login-container">
-                    <div class="fb-login-button" data-scope="user_age_range,user_friends,user_hometown,user_posts" data-max-rows="1" data-size="large" data-button-type="continue_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="true">
+                    <div class="fb-login-button" data-scope="user_age_range,user_friends,user_hometown,user_posts," data-max-rows="1" data-size="large" data-button-type="continue_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="true">
                     </div>
+                  </div>
+                  <div id="fb-friends-container" style="display: none;">
+                    You have <span id='fb-friends-count'></span> friends vouching for your credit worthiness!
                   </div>
                 </div>
               </div>
@@ -51,6 +54,13 @@ $(document).ready(function() {
       if (response['status'] == 'connected') {
         console.log("User Logged In");
         $('.fb-credentials-container').html('FB Authorized').show();
+        console.log(response['authResponse']['accessToken'])
+        console.log(response['authResponse']['userID'])
+        $.getJSON("https://graph.facebook.com/v3.0/" + response['authResponse']['userID'] + "/friends?access_token=" + response['authResponse']['accessToken'], function(data) {
+          var num_friends = data['summary']['total_count'];
+          $('#fb-friends-count').html(num_friends);
+          $('#fb-friends-container').show();
+        });
       }
       else {
         console.log("User not logged in");
