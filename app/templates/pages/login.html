@@ -7,14 +7,22 @@
         <div class="row h-100">
           <div class="col-lg-7 my-auto">
             <div class="header-content mx-auto">
-              <div class="metamask-not-installed">
-                <h4>Whoops BlockBureau requires MetaMask</h4>
-                <a href="https://metamask.io" target="_blank">
-                  <img class="download-metamask" alt="Install MetaMask" src="{{ url_for('static', filename='img/download-metamask.png') }}" />
-                </a>
-              </div>
-              <div class="metamask-installed">
-                <h4>Wahoo you have MetaMask</h4>
+              <div id="main-content-bg"></div>
+              <div class="main-content-container">
+                <div class="metamask-not-installed">
+                  <h4>Whoops BlockBureau requires MetaMask</h4>
+                  <a href="https://metamask.io" target="_blank">
+                    <img class="download-metamask" alt="Install MetaMask" src="{{ url_for('static', filename='img/download-metamask.png') }}" />
+                  </a>
+                </div>
+                <div class="metamask-installed">
+                  <div class='fb-credentials-container'>
+                  </div>
+                  <div class="fb-login-container">
+                    <div class="fb-login-button" data-scope="user_age_range,user_friends,user_hometown,user_posts" data-max-rows="1" data-size="large" data-button-type="continue_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="true">
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -26,14 +34,30 @@
 
 {% block js %}
 <script>
-if (typeof window.web3 !== 'undefined') {
-    // This user has MetaMask, or another Web3 browser installed!
-    var ethereumProvider = web3.currentProvider  
-    $('.metamask-installed').show();
-}
-else {
-    // Prompt user to install Metamask
-    $('.metamask-not-installed').show();
-}
+$(document).ready(function() {
+  if (typeof window.web3 !== 'undefined') {
+      // This user has MetaMask, or another Web3 browser installed!
+      var ethereumProvider = web3.currentProvider  
+      $('.metamask-installed').show();
+  }
+  else {
+      // Prompt user to install Metamask
+      $('.metamask-not-installed').show();
+  }
+  $(document).on('fbload', function() {
+    console.log("fbload event fired")
+    FB.getLoginStatus(function(response) {
+      console.log(response);
+      if (response['status'] == 'connected') {
+        console.log("User Logged In");
+        $('.fb-credentials-container').html('FB Authorized').show();
+      }
+      else {
+        console.log("User not logged in");
+        $('.fb-login-container').show();
+      }
+    });
+  });
+});
 </script>
 {% endblock %}
