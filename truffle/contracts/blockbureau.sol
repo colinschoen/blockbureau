@@ -1,5 +1,5 @@
-pragma solidity ^0.4.0;
-import "github.com/oraclize/ethereum-api/oraclizeAPI.sol";
+pragma solidity ^0.4.11;
+import "installed_contracts/oraclize-api/contracts/usingOraclize.sol";
 
 contract BlockBureau is usingOraclize {
   uint public fb_friends_count;
