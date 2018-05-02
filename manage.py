@@ -20,6 +20,7 @@ class RunTests(Command):
 
 
 manager.add_command("server", Server(host='localhost'))
+manager.add_command("server-ssl", Server(host='localhost', ssl_crt='cert.pem', ssl_key='key.pem'))
 manager.add_command("show-urls", ShowUrls())
 manager.add_command('test', RunTests())
 
