@@ -58,5 +58,7 @@ Development: Setting up
 
         pip install -r requirements.txt
 
+6. Set up config by setting the necessary environment variables found in `config.py`
+
 > You only have to run through the setup process once. However, you **must run
 > `source env/bin/activate` every time you work in the repo.**
