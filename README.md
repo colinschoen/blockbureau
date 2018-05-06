@@ -42,7 +42,7 @@ Development: Setting up
    [virtualenv](https://virtualenv.pypa.io/en/latest/installation.html)
 2. Clone this repository:
 
-        git clone git@github.com:colinschoen/dokku-mysql-backup.git
+        git clone git@github.com:colinschoen/blockbureau.git
 
     and change directories into the repository.
 
