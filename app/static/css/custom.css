@@ -2,8 +2,9 @@
     display: inline;
     max-width: 30px;
 }
+
 .btn-metamask-login:hover .metamask-icon {
-    display: none;
+    visibility: hidden;
 }
 .shell-wrap {
   width: 500px;
@@ -80,12 +81,20 @@
   display: none;
 }
 
+a.download-metamask-link {
+  display: inline-block;
+}
+
 img.download-metamask {
   max-width: 300px;
 }
 
 .fb-login-container {
   display: none;
+}
+
+.fb-login-button {
+  z-index: 1000;
 }
 
 #main-content-bg {
@@ -112,4 +121,15 @@ img.download-metamask {
   padding: 20px;
   background: rgb(34,34,34); /* for IE */
   background: rgba(34,34,34,0.75);
+}
+
+div#matamask-not-loggedin {
+    visibility: hidden;
+    color: red;
+}
+
+div#matamask-loggedin{
+    visibility: hidden;
+    color: blue;
+
 }
