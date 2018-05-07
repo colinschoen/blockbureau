@@ -42,7 +42,7 @@ Development: Setting up
    [virtualenv](https://virtualenv.pypa.io/en/latest/installation.html)
 2. Clone this repository:
 
-        git clone git@github.com:colinschoen/dokku-mysql-backup.git
+        git clone git@github.com:colinschoen/blockbureau.git
 
     and change directories into the repository.
 
@@ -57,6 +57,8 @@ Development: Setting up
 5. Install all dependencies:
 
         pip install -r requirements.txt
+
+6. Set up config by setting the necessary environment variables found in `config.py`
 
 > You only have to run through the setup process once. However, you **must run
 > `source env/bin/activate` every time you work in the repo.**
