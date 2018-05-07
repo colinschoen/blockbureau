@@ -125,11 +125,22 @@ img.download-metamask {
 
 div#matamask-not-loggedin {
     visibility: hidden;
-    color: red;
 }
 
-div#matamask-loggedin{
-    visibility: hidden;
-    color: blue;
+.blocks {
+    width:100%;
+}
 
+header.masthead .header-content {
+    max-width: 100%;
+}
+
+.facebook-block {
+    background: yellow;
+}
+
+.block {
+    margin: 0 20px 0 20px;
+    width: 300px;
+    height: 130px;
 }

@@ -1,36 +1,40 @@
 $(document).ready(function() {
 
+
     var fbLoggedIn = false;
+    var fbResponse;
+
 
     $(document).on('fbload', function() {
         console.log("fbload event fired")
         FB.getLoginStatus(function(response) {
           console.log(response);
-          fbLoggedIn = response['status'] == 'connected';
+          fbLoggedIn = (response['status'] == 'connected');
+          fbResponse = response;
         });
         checkMetaMask();
-
       });
 
     function checkMetaMask() {
-                        console.log('CHECKMETAMASK');
-
         setInterval(function() {
             web3.eth.getAccounts(function(err, accounts){
                 if (err != null) console.error("An error occurred: "+err);
                 else if (accounts.length == 0) {
                     console.log('not-logedin');
-                    $("div#metamask-not-loggedin").css({'visibility': 'visible'});
-                    $("div#metamask-loggedin").css({'visibility': 'hidden'});
+                    $("div#matamask-not-loggedin").css('visibility', 'visible');
+                    $('.fb-login-container').hide();
+                    $('#fb-friends-container').hide();
+                    $('.fb-credentials-container').html('FB Authorized').hide();
+
                 }
                 else {
                     console.log('logedin');
-                    $('div#metamask-loggedin').css({'visibility': 'visible'});
-                    $('div#metamask-not-loggedin').css({'visibility': 'hidden'});
+                    $("div#matamask-not-loggedin").css('visibility', 'hidden');
                     if (fbLoggedIn) {
-                        console.log("User Logged In");
+                        $('.fb-login-container').hide();
                         $('.fb-credentials-container').html('FB Authorized').show();
-                        $.getJSON("https://graph.facebook.com/v3.0/" + response['authResponse']['userID'] + "/friends?access_token=" + response['authResponse']['accessToken'], function(data) {
+                        $.getJSON("https://graph.facebook.com/v3.0/" + fbResponse['authResponse']['userID'] +
+                            "/friends?access_token=" + fbResponse['authResponse']['accessToken'], function(data) {
                           var num_friends = data['summary']['total_count'];
                           $('#fb-friends-count').html(num_friends);
                           $('#fb-friends-container').show();
@@ -46,7 +50,7 @@ $(document).ready(function() {
 
     $( "#logout-facebook" ).click(function() {
         FB.logout(function(response) {
-          console.log("User logged out.: ");
+          console.log("User logged out. ");
         });
     });
 
@@ -58,34 +62,4 @@ $(document).ready(function() {
       });
     }
 
-
-  //    var account = web3.eth.accounts[0];
-
-
 });
-
-
-
-
-//$(document).on('fbload', function() {
-//    console.log("fbload event fired")
-//    FB.getLoginStatus(function(response) {
-//      console.log(response);
-//      if (response['status'] == 'connected') {
-//        console.log("User Logged In");
-//        $('.fb-credentials-container').html('FB Authorized').show();
-//        console.log(response['authResponse']['accessToken'])
-//        console.log(response['authResponse']['userID'])
-//        $.getJSON("https://graph.facebook.com/v3.0/" + response['authResponse']['userID'] + "/friends?access_token=" + response['authResponse']['accessToken'], function(data) {
-//          var num_friends = data['summary']['total_count'];
-//          $('#fb-friends-count').html(num_friends);
-//          $('#fb-friends-container').show();
-//        });
-//      }
-//      else {
-//        console.log("User not logged in");
-//        $('.fb-login-container').show();
-//      }
-//    });
-//  });
-

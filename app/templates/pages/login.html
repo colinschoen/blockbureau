@@ -5,8 +5,8 @@
     <header class="masthead">
       <div class="container h-100">
         <div class="row h-100">
-          <div class="col-lg-7 my-auto">
-            <div class="header-content mx-auto">
+          <div class="col my-auto">
+            <div class="header-content">
               <div id="main-content-bg"></div>
               <div class="main-content-container">
                 <div class="metamask-not-installed">
@@ -16,22 +16,35 @@
                   </a>
                 </div>
                 <div class="container metamask-installed">
-                  <div class="row"></div>
-                  <div id="matamask-not-loggedin">
-                    Please login to metamask using the browser extension.
+                  <div class="row" id="matamask-not-loggedin">
+                    Please login to metamask using the browser extension in order to start plugging your social data.
                   </div>
-                  <div class="row">
-                    <div id="matamask-loggedin">
-                      Please login to Facebook.
-
-                      <div class='fb-credentials-container'></div>
-                      <div class="fb-login-container">
-                        <div class="fb-login-button" data-scope="user_age_range,user_friends,user_hometown,user_posts," data-max-rows="1" data-size="large" data-button-type="continue_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="true"></div>
+                  <div class="blocks" id="matamask-loggedin">
+                      <div class="card text-white bg-primary mb-3 facebook-block block row">
+                        <div class="card-body">
+                          <h5 class="card-title">Add Facebook block:</h5>
+                          <div class='fb-credentials-container'></div>
+                          <div class="fb-login-container">
+                            <div class="fb-login-button" data-scope="user_age_range,user_friends,user_hometown,user_posts," data-max-rows="1" data-size="large" data-button-type="continue_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="true"></div>
+                          </div>
+                          <div id="fb-friends-container column" style="display: none;">
+                            You have <span id='fb-friends-count'></span> friends vouching for your credit worthiness!
+                          </div>
+                        </div>
                       </div>
-                      <div id="fb-friends-container" style="display: none;">
-                        You have <span id='fb-friends-count'></span> friends vouching for your credit worthiness!
+                      <div class="card text-white bg-warning mb-3 linkedin-block block row">
+                        <div class="card-body">
+                          <h5 class="card-title">Add Linkedin block:</h5>
+                        </div>
+                      </div>
+                      <div class="card text-white bg-info mb-3 Venmo-block block row">
+                        <div class="card-body">
+                          <h5 class="card-title">Add Venmo block:</h5>
+                        </div>
                       </div>
                     </div>
+                  </div>
+
 
                   </div>
                 </div>
@@ -40,6 +53,7 @@
           </div>
         </div>
       </div>
+      <button id="logout-facebook">Logout</button>
     </header>
 
 {% endblock %}
