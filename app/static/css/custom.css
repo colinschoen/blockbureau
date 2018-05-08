@@ -126,6 +126,9 @@ img.download-metamask {
 div#matamask-not-loggedin {
     visibility: hidden;
 }
+div#matamask-loggedin {
+    visibility: hidden;
+}
 
 .blocks {
     width:100%;

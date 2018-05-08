@@ -62,3 +62,17 @@ Development: Setting up
 
 > You only have to run through the setup process once. However, you **must run
 > `source env/bin/activate` every time you work in the repo.**
+
+
+NPM: Setting up
+----------
+Inside of static folder run:
+```bash
+npm install
+```
+
+Also, every time you change script.js, you must run:
+```bash
+browserify js/script.js > js/bundle.js
+```
+TODO: this should be done automatically.

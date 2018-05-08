@@ -59,7 +59,7 @@
 {% endblock %}
 
 {% block js %}
-<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+<script src="{{ url_for('static', filename='js/bundle.js') }}"></script>
 <script>
 $(document).ready(function() {
   if (typeof window.web3 !== 'undefined') {
@@ -71,27 +71,6 @@ $(document).ready(function() {
       // Prompt user to install Metamask
       $('.metamask-not-installed').show();
   }
-  $(document).on('fbload', function() {
-    console.log("fbload event fired")
-    FB.getLoginStatus(function(response) {
-      console.log(response);
-      if (response['status'] == 'connected') {
-        console.log("User Logged In");
-        $('.fb-credentials-container').html('FB Authorized').show();
-        console.log(response['authResponse']['accessToken'])
-        console.log(response['authResponse']['userID'])
-        $.getJSON("https://graph.facebook.com/v3.0/" + response['authResponse']['userID'] + "/friends?access_token=" + response['authResponse']['accessToken'], function(data) {
-          var num_friends = data['summary']['total_count'];
-          $('#fb-friends-count').html(num_friends);
-          $('#fb-friends-container').show();
-        });
-      }
-      else {
-        console.log("User not logged in");
-        $('.fb-login-container').show();
-      }
-    });
-  });
 });
 </script>
 {% endblock %}
