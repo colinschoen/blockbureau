@@ -115,13 +115,13 @@
             $(document).trigger('fbload');
         };
         // Load the SDK Asynchronously
-        (function(d, s, id) {
+        (function(d, s, id, appid) {
             var js, fjs = d.getElementsByTagName(s)[0];
             if (d.getElementById(id)) return;
             js = d.createElement(s); js.id = id;
-            js.src = "//connect.facebook.net/en_US/sdk.js";
+            js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0&appId="+appid;
             fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
+        }(document, 'script', 'facebook-jssdk', '{{ config.FB_APP_ID }}'));
     </script>
 
   </body>

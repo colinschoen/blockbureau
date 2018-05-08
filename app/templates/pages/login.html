@@ -5,8 +5,9 @@
     <header class="masthead">
       <div class="container h-100">
         <div class="row h-100">
-          <div class="col-lg-7 my-auto">
-            <div class="header-content mx-auto">
+          <div class="col my-auto">
+            <div class="header-content">
+              <div id="main-content-bg"></div>
               <div class="main-content-container">
                 <div class="metamask-not-installed">
                   <h4>Whoops BlockBureau requires MetaMask</h4>
@@ -14,15 +15,37 @@
                     <img class="download-metamask" alt="Install MetaMask" src="{{ url_for('static', filename='img/download-metamask.png') }}" />
                   </a>
                 </div>
-                <div class="metamask-installed">
-                  <div class='fb-credentials-container'>
+                <div class="container metamask-installed">
+                  <div class="row" id="matamask-not-loggedin">
+                    Please login to metamask using the browser extension in order to start plugging your social data.
                   </div>
-                  <div class="fb-login-container">
-                    <div class="fb-login-button" data-scope="user_age_range,user_friends,user_hometown,user_posts" data-max-rows="1" data-size="large" data-button-type="continue_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="true">
+                  <div class="blocks" id="matamask-loggedin">
+                      <div class="card text-white bg-primary mb-3 facebook-block block row">
+                        <div class="card-body">
+                          <h5 class="card-title">Add Facebook block:</h5>
+                          <div class='fb-credentials-container'></div>
+                          <div class="fb-login-container">
+                            <div class="fb-login-button" data-scope="user_age_range,user_friends,user_hometown,user_posts," data-max-rows="1" data-size="large" data-button-type="continue_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="true"></div>
+                          </div>
+                          <div id="fb-friends-container column" style="display: none;">
+                            You have <span id='fb-friends-count'></span> friends vouching for your credit worthiness!
+                          </div>
+                        </div>
+                      </div>
+                      <div class="card text-white bg-warning mb-3 linkedin-block block row">
+                        <div class="card-body">
+                          <h5 class="card-title">Add Linkedin block:</h5>
+                        </div>
+                      </div>
+                      <div class="card text-white bg-info mb-3 Venmo-block block row">
+                        <div class="card-body">
+                          <h5 class="card-title">Add Venmo block:</h5>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                  <div id="fb-friends-container" style="display: none;">
-                    You have <span id='fb-friends-count'></span> friends vouching for your credit worthiness!
+
+
                   </div>
                 </div>
               </div>
@@ -30,43 +53,24 @@
           </div>
         </div>
       </div>
+      <button id="logout-facebook">Logout</button>
     </header>
 
 {% endblock %}
 
 {% block js %}
+<script src="{{ url_for('static', filename='js/bundle.js') }}"></script>
 <script>
 $(document).ready(function() {
   if (typeof window.web3 !== 'undefined') {
       // This user has MetaMask, or another Web3 browser installed!
-      var ethereumProvider = web3.currentProvider  
+      var ethereumProvider = web3.currentProvider
       $('.metamask-installed').show();
   }
   else {
       // Prompt user to install Metamask
       $('.metamask-not-installed').show();
   }
-  $(document).on('fbload', function() {
-    console.log("fbload event fired")
-    FB.getLoginStatus(function(response) {
-      console.log(response);
-      if (response['status'] == 'connected') {
-        console.log("User Logged In");
-        $('.fb-credentials-container').html('FB Authorized').show();
-        console.log(response['authResponse']['accessToken'])
-        console.log(response['authResponse']['userID'])
-        $.getJSON("https://graph.facebook.com/v3.0/" + response['authResponse']['userID'] + "/friends?access_token=" + response['authResponse']['accessToken'], function(data) {
-          var num_friends = data['summary']['total_count'];
-          $('#fb-friends-count').html(num_friends);
-          $('#fb-friends-container').show();
-        });
-      }
-      else {
-        console.log("User not logged in");
-        $('.fb-login-container').show();
-      }
-    });
-  });
 });
 </script>
 {% endblock %}
