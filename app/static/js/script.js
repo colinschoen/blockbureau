@@ -5,7 +5,7 @@ $(document).ready(function() {
     const EthContract = require('ethjs-contract');
     const abi = require('../json/BlockBureau.json')['abi'];
     const address = '0x18a06678625BE7191a26EB69606DcAc53B8271e7';
-    var userToken;
+    var userToken, UserToken;
     var fbLoggedIn = false;
     var fbResponse;
 
@@ -18,8 +18,8 @@ $(document).ready(function() {
     }
 
     function initContract (contract) {
-      userToken = contract(abi)
-      const userAddress = userToken.at(address)
+      UserToken = contract(abi)
+      userToken = UserToken.at(address)
     }
 
     $(document).on('fbload', function() {
@@ -48,24 +48,45 @@ $(document).ready(function() {
             }
             else {
                 uiUpdatesMMLoggedin();
+                console.log('accounts:',  accounts);
                 if (fbLoggedIn) {
                     console.log("logged into facebook")
                     $('.fb-login-container').hide();
                     $('.fb-credentials-container').html('FB Authorized').show();
 
-                    $.getJSON("https://graph.facebook.com/v3.0/" + fbResponse['authResponse']['userID'] +
-                        "/friends?access_token=" + fbResponse['authResponse']['accessToken'], function(data) {
-                      var num_friends = data['summary']['total_count'];
-                      $('#fb-friends-count').html(num_friends);
-                      $('#fb-friends-container').show();
+                    userToken.get_fb_friends(fbResponse['authResponse']['userID'], fbResponse['authResponse']['userID'],
+                        {from: address[0]})
+                    .then(function (txHash) {
+                          console.log('Transaction sent')
+                          console.dir(txHash)
+                          waitForTxToBeMined(txHash)
+                    })
+                    . catch (console.error)
 
-                    });
+//                    $.getJSON("https://graph.facebook.com/v3.0/" + fbResponse['authResponse']['userID'] +
+//                        "/friends?access_token=" + fbResponse['authResponse']['userID'], function(data) {
+//                      var num_friends = data['summary']['total_count'];
+//                      $('#fb-friends-count').html(num_friends);
+//                      $('#fb-friends-container').show();
+//                    });
                 } else {
                     console.log("NOT logged in of facebook")
                     $('.fb-login-container').show();
                 }
             }
         });
+    }
+
+    async function waitForTxToBeMined (txHash) {
+      let txReceipt
+      while (!txReceipt) {
+        try {
+          txReceipt = await eth.getTransactionReceipt(txHash)
+        } catch (err) {
+          return console.err
+        }
+      }
+      console.log('SUCCESS: ', txReceipt);
     }
 
     function uiUpdatesMMLoggedOut() {
